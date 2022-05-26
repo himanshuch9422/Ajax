@@ -4,53 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JQuery</title>
+
+
 </head>
 <body>
-
-
-    <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-          <small id="emailHelp" class="form-text text-muted">   </small>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="pwd" placeholder="Password">
-        </div>
-        
-        <button type="button" onclick="save()" id = "save_btn">Submit </button>    
-    </form>
-
-
+    <!-- <div data-role="page"> -->
     
-</body>
+    <button onclick="q();">ckick</button>
+    <div id="q">this will be changed</div>
+    <!-- <div class="header" data-role="header" ><h1>This is a header</h1></div>
+    <div class="footer" data-role="footer">This is a Footer</div> -->
 
-    <script>
-        function save(){
-            let email, pwd;
-            email = document.getElementById("email").value;
-            pwd = document.getElementById("pwd").value;
-
-            let user_records = new Array();
-            user_records=JSON.parse(localStorage.getItem("users"))?JSON.parse(localStorage.getItem("users")):[]
-                    if(user_records.some((v) => { return v.email==email}))
-                    {
-                             alert("duplicate");
-                    }
-                    else{
-                        user_records.push({
-                            
-                            "email": email,
-                            
-                            "pwd":pwd
-                        })
-                        {
-                           localStorage.setItem("users",JSON.stringify(user_records))  ;
-                        }
-                    }
-                }
-        
+</div>
+<script>
+    
+    function q(){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+            if(this.status==200 && this.readyState ==4){
+                document.getElementById('q').innerHTML = this.responseText;
+            }
+        }
+        xhttp.open('GET', 'test.txt', true);
+        xhttp.send();
+    }
     </script>
+</body>
 </html>
